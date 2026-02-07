@@ -20,7 +20,7 @@ export default function Home() {
   const [categories, setCategories] = useState<Category[]>([
     {
       id: 1,
-      name: "スーパー",
+      name: "ロピア",
       folded: false,
       items: [
         { id: 1, name: "牛乳", quantity: "1本", checked: false },
