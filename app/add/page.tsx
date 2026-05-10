@@ -1,7 +1,7 @@
 //Add Homeに新しく追加
 "use client";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 export default function AddPage() {
 
@@ -18,12 +18,22 @@ export default function AddPage() {
   const [categoryId, setCategoryId] = useState(1);
   //const [selectedCategoryId, setSelectedCategoryId] = useState(1);
   const [newCategoryName, setNewCategoryName] = useState("");
+  const [categories, setCategories] = useState<any[]>([]);
 
-  const storedCategories = localStorage.getItem("todayCategories");
+  // const storedCategories = localStorage.getItem("todayCategories");
 
-  const categories = storedCategories
-    ? JSON.parse(storedCategories)
-    : [];
+  // const categories = storedCategories
+  //   ? JSON.parse(storedCategories)
+  //   : [];
+
+  useEffect(() => {
+    const storedCategories =
+      localStorage.getItem("todayCategories");
+
+    if (storedCategories) {
+      setCategories(JSON.parse(storedCategories));
+    }
+  }, []);
 
   //アイテムを新しく追加する
   const addItem = () => {
