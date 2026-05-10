@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shopping List Web App
 
-## Getting Started
+## アプリ概要
+カテゴリ分けして管理できる買い物リストWebアプリです。
 
-First, run the development server:
+「定番リスト」から当日の買い物リストを作成でき、
+購入済み管理やカテゴリ整理にも対応しています。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+日常的に使いやすいことを意識して、
+スマートフォンでの利用を想定して開発しました。
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 作成背景
+毎回同じ商品を入力する手間を減らしたいと思い、
+定番商品を管理できる買い物リストアプリを作成しました。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+カテゴリごとに整理しながら、
+当日の買い物リストを柔軟に作成できるよう工夫しました。
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## 主な機能
+- カテゴリごとの買い物リスト管理
+- 定番リスト（Master）から当日の買い物リストを作成
+- アイテムの追加 / 編集 / 削除
+- カテゴリの追加 / 編集 / 削除
+- 購入済みチェック
+- 購入済みアイテムの一括削除
+- カテゴリ移動
+- 数量入力
+- localStorage を利用したデータ保存
+- スマートフォン表示を意識したUI
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 使用技術
+- Next.js
+- React
+- TypeScript
+- localStorage
+- Vercel
+- Git / GitHub
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 工夫した点
+- 「定番リスト（Master）」と「今日の買い物リスト（Home）」を分離し、
+  日常的に使いやすい構成を意識しました。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- カテゴリ管理機能を実装し、
+  カテゴリの追加・編集・削除に対応しました。
+
+- アイテムの重複追加を防止し、
+  実際の運用を想定した動作になるよう工夫しました。
+
+- localStorage を利用し、
+  ページ更新後もデータを保持できるようにしました。
+
+- スマートフォンで使いやすいよう、
+  シンプルなUIを意識して調整しました。
+
+
+## 今後の改善予定
+- Supabase を利用した端末間同期
+- ログイン機能
+- UI / UX の改善
+- ドラッグ&ドロップによる並び替え
+- 定番品の検索機能
+
+
+## 公開URL
+https://shopping-list-webapp-pi.vercel.app/
+
+
+## GitHub
+https://github.com/Yang9589/shopping-list-webapp/
+
