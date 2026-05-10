@@ -34,6 +34,7 @@ export default function Home() {
   const [tempName, setTempName] = useState("");
   const [categories, setCategories] = useState<Category[]>([]);
   const [newCategoryName, setNewCategoryName] = useState("");
+  const [masterItems, setMasterItems] = useState<any[]>([]);
 
   useEffect(() => {
     const storedToday = localStorage.getItem("todayCategories");
@@ -55,6 +56,14 @@ export default function Home() {
         items: [],
       }))
     );
+  }, []);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("masterItems");
+
+    if (stored) {
+      setMasterItems(JSON.parse(stored));
+    }
   }, []);
 
   const moveItem = (
@@ -86,15 +95,15 @@ export default function Home() {
       return removed.map((c) =>
         c.id === toCategoryId
           ? {
-              ...c,
-              items: [
-                ...c.items,
-                {
-                  ...movingItem!,
-                  categoryId: toCategoryId,
-                },
-              ],
-            }
+            ...c,
+            items: [
+              ...c.items,
+              {
+                ...movingItem!,
+                categoryId: toCategoryId,
+              },
+            ],
+          }
           : c
       );
     });
@@ -175,9 +184,9 @@ export default function Home() {
         .map((c) =>
           c.id === uncategorized.id
             ? {
-                ...c,
-                items: [...c.items, ...removingCategory.items],
-              }
+              ...c,
+              items: [...c.items, ...removingCategory.items],
+            }
             : c
         );
     });
@@ -208,13 +217,13 @@ export default function Home() {
       prev.map((c) =>
         c.id === categoryId
           ? {
-              ...c,
-              items: c.items.map((i) =>
-                i.id === itemId
-                  ? { ...i, quantity }
-                  : i
-              ),
-            }
+            ...c,
+            items: c.items.map((i) =>
+              i.id === itemId
+                ? { ...i, quantity }
+                : i
+            ),
+          }
           : c
       )
     );
@@ -390,11 +399,11 @@ export default function Home() {
       prev.map((c) =>
         c.id === categoryId
           ? {
-              ...c,
-              items: c.items.map((i) =>
-                i.id === itemId ? { ...i, checked: !i.checked } : i
-              ),
-            }
+            ...c,
+            items: c.items.map((i) =>
+              i.id === itemId ? { ...i, checked: !i.checked } : i
+            ),
+          }
           : c
       )
     );
@@ -408,9 +417,9 @@ export default function Home() {
       prev.map((c) =>
         c.id === categoryId
           ? {
-              ...c,
-              items: c.items.filter((i) => i.id !== itemId),
-            }
+            ...c,
+            items: c.items.filter((i) => i.id !== itemId),
+          }
           : c
       )
     );
@@ -431,7 +440,7 @@ export default function Home() {
       }}
     >
       <h1
-        style={{ 
+        style={{
           fontSize: 20,
           fontWeight: "bold",
           marginBottom: 16,
@@ -527,95 +536,90 @@ export default function Home() {
             [...categoryId.items]
               .sort((a, b) => Number(a.checked) - Number(b.checked))
               .map((item) => {
-              const storedMasterItems = localStorage.getItem("masterItems");
 
-              const masterItems = storedMasterItems
-                ? JSON.parse(storedMasterItems)
-                : [];
+                const isMaster = masterItems.some(
+                  (i: any) => i.name === item.name
+                );
 
-              const isMaster = masterItems.some(
-                (i: any) => i.name === item.name
-              );
-
-              return (
-                <div
-                  key={item.id}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    padding: "8px 4px",
-                    opacity: item.checked ? 0.4 : 1,
-                  }}
-                >
-                  <input
-                    type="checkbox"
-                    checked={item.checked}
-                    onChange={() => toggleItem(categoryId.id, item.id)}
-                    style={{ width: 20, height: 20, marginRight: 12, cursor: "pointer" }}
-                  />
-
-                  <span style={{ flex: 1 }}>{item.name}</span>
-
-                  <select
-                    value={categoryId.id}
-                    onChange={(e) =>
-                      moveItem(
-                        categoryId.id,
-                        Number(e.target.value),
-                        item.id
-                      )
-                    }
-                    style={{ marginLeft: 8, cursor: "pointer" }}
-                  >
-                    {categories.map((c) => (
-                      <option key={c.id} value={c.id}>
-                        {c.name}
-                      </option>
-                    ))}
-                  </select>
-
-                  <input
-                    type="text"
-                    value={item.quantity ?? ""}
-                    placeholder="数量"
-                    onChange={(e) =>
-                      updateQuantity(
-                        categoryId.id,
-                        item.id,
-                        e.target.value
-                      )
-                    }
+                return (
+                  <div
+                    key={item.id}
                     style={{
-                      width: 60,
-                      fontSize: 16,
-                      marginLeft: 8,
-                      cursor: "pointer",
-                      border: "1px solid #ccc",
-                      borderRadius: 8,
+                      display: "flex",
+                      alignItems: "center",
+                      padding: "8px 4px",
+                      opacity: item.checked ? 0.4 : 1,
                     }}
-                  />
-
-                  <button
-                    disabled={isMaster}
-                    onClick={() => addToMaster(item)}
-                    style={buttonStyle}
                   >
-                    {isMaster ? "★" : "☆"}
-                  </button>
+                    <input
+                      type="checkbox"
+                      checked={item.checked}
+                      onChange={() => toggleItem(categoryId.id, item.id)}
+                      style={{ width: 20, height: 20, marginRight: 12, cursor: "pointer" }}
+                    />
 
-                  <button
-                    onClick={() => {
-                      if (confirm("削除しますか？")) {
-                        removeItem(categoryId.id, item.id);
+                    <span style={{ flex: 1 }}>{item.name}</span>
+
+                    <select
+                      value={categoryId.id}
+                      onChange={(e) =>
+                        moveItem(
+                          categoryId.id,
+                          Number(e.target.value),
+                          item.id
+                        )
                       }
-                    }}
-                    style={buttonStyle}
-                  >
-                    🗑
-                  </button>
-                </div>
-              );
-            })}
+                      style={{ marginLeft: 8, cursor: "pointer" }}
+                    >
+                      {categories.map((c) => (
+                        <option key={c.id} value={c.id}>
+                          {c.name}
+                        </option>
+                      ))}
+                    </select>
+
+                    <input
+                      type="text"
+                      value={item.quantity ?? ""}
+                      placeholder="数量"
+                      onChange={(e) =>
+                        updateQuantity(
+                          categoryId.id,
+                          item.id,
+                          e.target.value
+                        )
+                      }
+                      style={{
+                        width: 60,
+                        fontSize: 16,
+                        marginLeft: 8,
+                        cursor: "pointer",
+                        border: "1px solid #ccc",
+                        borderRadius: 8,
+                      }}
+                    />
+
+                    <button
+                      disabled={isMaster}
+                      onClick={() => addToMaster(item)}
+                      style={buttonStyle}
+                    >
+                      {isMaster ? "★" : "☆"}
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        if (confirm("削除しますか？")) {
+                          removeItem(categoryId.id, item.id);
+                        }
+                      }}
+                      style={buttonStyle}
+                    >
+                      🗑
+                    </button>
+                  </div>
+                );
+              })}
         </section>
       ))}
 
