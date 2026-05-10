@@ -45,12 +45,12 @@ export default function AddPage() {
       categoryId,
     };
 
-    const stored = localStorage.getItem("newItems");
+    const stored = localStorage.getItem("addItems");
     const items = stored ? JSON.parse(stored) : [];
 
     items.push(newItem);
 
-    localStorage.setItem("newItems", JSON.stringify(items));
+    localStorage.setItem("addItems", JSON.stringify(items));
     window.location.href = "/";
   };
 
