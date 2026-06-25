@@ -20,8 +20,9 @@ export default function MasterPage() {
   const buttonStyle = {
     padding: "8px 12px",
     borderRadius: 8,
-    border: "1px solid #ccc",
-    background: "white",
+    border: "1px solid var(--border-color)",
+    background: "var(--btn-bg-default)",
+    color: "var(--btn-text-default)",
     cursor: "pointer",
   };
   
@@ -229,7 +230,8 @@ export default function MasterPage() {
         padding: 16,
         maxWidth: 480,
         margin: "0 auto",
-        background: "#f5f5f5",
+        background: "var(--main-bg)",
+        color: "var(--text-main)",
         minHeight: "100vh",
       }}
     >
@@ -248,10 +250,10 @@ export default function MasterPage() {
           key={category.id}
           style={{
             marginBottom: 16,
-            background: "white",
+            background: "var(--card-bg)",
             borderRadius: 12,
             padding: 12,
-            boxShadow: "0 1px 4px rgba(0,0,0,0.08)",
+            boxShadow: "0 1px 4px rgba(0,0,0,0.15)",
           }}
         >
           <h2 style={{ fontSize: 16, marginBottom: 8 }}>
@@ -260,7 +262,14 @@ export default function MasterPage() {
                 <input
                   value={editingName}
                   onChange={(e) => setEditingName(e.target.value)}
-                  style={{ fontSize: 16 }}
+                  style={{
+                    fontSize: 16,
+                    background: "var(--input-bg)",
+                    color: "var(--text-main)",
+                    border: "1px solid var(--border-color)",
+                    borderRadius: 8,
+                    padding: "4px 8px",
+                  }}
                 />
                 <button
                   onClick={saveCategoryName}
@@ -331,7 +340,14 @@ export default function MasterPage() {
                       )
                     )
                   }
-                  style={{ cursor: "pointer" }}
+                  style={{
+                    cursor: "pointer",
+                    background: "var(--input-bg)",
+                    color: "var(--text-main)",
+                    border: "1px solid var(--border-color)",
+                    borderRadius: 8,
+                    padding: "4px 8px",
+                  }}
                 >
                   {categories.map((c) => (
                     <option key={c.id} value={c.id}>
@@ -374,9 +390,8 @@ export default function MasterPage() {
           padding: 12,
           marginTop: 16,
           cursor: "pointer",
-
-          background: "#7eda81",
-          // color: "white",
+          background: "var(--btn-bg-primary)",
+          color: "var(--btn-text-default)",
           border: "none",
           borderRadius: 8,
         }}
@@ -391,8 +406,11 @@ export default function MasterPage() {
         style={{ 
           marginRight: 8,
           cursor: "pointer",
-          border: "1px solid #ccc",
+          background: "var(--input-bg)",
+          color: "var(--text-main)",
+          border: "1px solid var(--border-color)",
           borderRadius: 8,
+          padding: "8px 12px",
         }}
       />
 
@@ -403,8 +421,11 @@ export default function MasterPage() {
         style={{
           marginRight: 8,
           cursor: "pointer",
-          border: "1px solid #ccc",
+          background: "var(--input-bg)",
+          color: "var(--text-main)",
+          border: "1px solid var(--border-color)",
           borderRadius: 8,
+          padding: "8px 12px",
         }}
       />
 
@@ -416,6 +437,11 @@ export default function MasterPage() {
         style={{
           marginRight: 8,
           cursor: "pointer",
+          background: "var(--input-bg)",
+          color: "var(--text-main)",
+          border: "1px solid var(--border-color)",
+          borderRadius: 8,
+          padding: "8px 12px",
         }}
       >
         {categories.map((c) => (
@@ -429,10 +455,11 @@ export default function MasterPage() {
         onClick={addItem}
         style={{ 
           cursor: "pointer",
-          background: "#dad47e",
-          // color: "white",
+          background: "var(--btn-bg-warning)",
+          color: "var(--btn-text-default)",
           border: "none",
           borderRadius: 8,
+          padding: "8px 12px",
         }}
       >
         ＋ 定番リストに追加
@@ -446,8 +473,11 @@ export default function MasterPage() {
           style={{
             marginRight: 8,
             cursor: "pointer",
-            border: "1px solid #ccc",
+            background: "var(--input-bg)",
+            color: "var(--text-main)",
+            border: "1px solid var(--border-color)",
             borderRadius: 8,
+            padding: "8px 12px",
           }}
         />
 
@@ -455,10 +485,11 @@ export default function MasterPage() {
           onClick={addCategory}
           style={{ 
             cursor: "pointer",
-            background: "#dad47e",
-            // color: "white",
+            background: "var(--btn-bg-warning)",
+            color: "var(--btn-text-default)",
             border: "none",
             borderRadius: 8,
+            padding: "8px 12px",
           }}
         >
           ＋ カテゴリ追加

@@ -24,8 +24,9 @@ export default function Home() {
   const buttonStyle = {
     padding: "8px 12px",
     borderRadius: 8,
-    border: "1px solid #ccc",
-    background: "white",
+    border: "1px solid var(--border-color)",
+    background: "var(--btn-bg-default)",
+    color: "var(--btn-text-default)",
     cursor: "pointer",
   };
 
@@ -435,7 +436,8 @@ export default function Home() {
         padding: 16,
         maxWidth: 480,
         margin: "0 auto",
-        background: "#f5f5f5",
+        background: "var(--main-bg)",
+        color: "var(--text-main)",
         minHeight: "100vh",
       }}
     >
@@ -450,7 +452,7 @@ export default function Home() {
       </h1>
 
       {isEmpty && (
-        <p style={{ color: "#666", textAlign: "center", marginTop: 24 }}>
+        <p style={{ color: "var(--text-sub)", textAlign: "center", marginTop: 24 }}>
           まだ買う物がありません<br />
           「＋ 新しく追加」から追加してみましょう
         </p>
@@ -462,10 +464,10 @@ export default function Home() {
           key={categoryId.id}
           style={{
             marginBottom: 16,
-            background: "white",
+            background: "var(--card-bg)",
             borderRadius: 12,
             padding: 12,
-            boxShadow: "0 1px 4px rgba(0,0,0,0.08)",
+            boxShadow: "0 1px 4px rgba(0,0,0,0.15)",
           }}
         >
           {/* カテゴリヘッダ */}
@@ -474,7 +476,16 @@ export default function Home() {
               <input
                 value={tempName}
                 onChange={(e) => setTempName(e.target.value)}
-                style={{ flex: 1, marginRight: 8, cursor: "pointer" }}
+                style={{
+                  flex: 1,
+                  marginRight: 8,
+                  cursor: "pointer",
+                  background: "var(--input-bg)",
+                  color: "var(--text-main)",
+                  border: "1px solid var(--border-color)",
+                  borderRadius: 8,
+                  padding: "4px 8px",
+                }}
               />
               <button
                 onClick={() => saveCategoryId(categoryId.id)}
@@ -569,7 +580,15 @@ export default function Home() {
                           item.id
                         )
                       }
-                      style={{ marginLeft: 8, cursor: "pointer" }}
+                      style={{
+                        marginLeft: 8,
+                        cursor: "pointer",
+                        background: "var(--input-bg)",
+                        color: "var(--text-main)",
+                        border: "1px solid var(--border-color)",
+                        borderRadius: 8,
+                        padding: "4px 8px",
+                      }}
                     >
                       {categories.map((c) => (
                         <option key={c.id} value={c.id}>
@@ -594,8 +613,11 @@ export default function Home() {
                         fontSize: 16,
                         marginLeft: 8,
                         cursor: "pointer",
-                        border: "1px solid #ccc",
+                        background: "var(--input-bg)",
+                        color: "var(--text-main)",
+                        border: "1px solid var(--border-color)",
                         borderRadius: 8,
+                        padding: "4px 8px",
                       }}
                     />
 
@@ -633,12 +655,9 @@ export default function Home() {
           padding: 12,
           fontSize: 16,
           marginTop: 16,
-          // border: "1px solid #ccc",
           textDecoration: "none",
-          color: "black",
-
-          background: "#7eda81",
-          // color: "white",
+          color: "var(--btn-text-default)",
+          background: "var(--btn-bg-primary)",
           border: "none",
           borderRadius: 8,
         }}
@@ -655,12 +674,9 @@ export default function Home() {
           padding: 12,
           fontSize: 16,
           marginTop: 8,
-          // border: "1px solid #ccc",
           textDecoration: "none",
-          color: "black",
-
-          background: "#7eda81",
-          // color: "white",
+          color: "var(--btn-text-default)",
+          background: "var(--btn-bg-primary)",
           border: "none",
           borderRadius: 8,
         }}
@@ -679,7 +695,9 @@ export default function Home() {
             marginRight: 8,
             width: 200,
             cursor: "pointer",
-            border: "1px solid #ccc",
+            background: "var(--input-bg)",
+            color: "var(--text-main)",
+            border: "1px solid var(--border-color)",
             borderRadius: 8,
           }}
         />
@@ -689,9 +707,8 @@ export default function Home() {
           style={{
             padding: "8px 12px",
             cursor: "pointer",
-
-            background: "#7eda81",
-            // color: "white",
+            background: "var(--btn-bg-primary)",
+            color: "var(--btn-text-default)",
             border: "none",
             borderRadius: 8,
           }}
@@ -706,9 +723,8 @@ export default function Home() {
             padding: 12,
             marginTop: 8,
             cursor: "pointer",
-
-            background: "#406841",
-            color: "white",
+            background: "var(--btn-bg-secondary)",
+            color: "var(--btn-text-light)",
             border: "none",
             borderRadius: 8,
           }}
@@ -723,9 +739,8 @@ export default function Home() {
             padding: 12,
             marginTop: 8,
             cursor: "pointer",
-
-            background: "#406841",
-            color: "white",
+            background: "var(--btn-bg-secondary)",
+            color: "var(--btn-text-light)",
             border: "none",
             borderRadius: 8,
           }}
