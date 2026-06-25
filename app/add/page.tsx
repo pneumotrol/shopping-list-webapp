@@ -8,8 +8,9 @@ export default function AddPage() {
   const buttonStyle = {
     padding: "8px 12px",
     borderRadius: 8,
-    border: "1px solid #ccc",
-    background: "white",
+    border: "1px solid var(--border-color)",
+    background: "var(--btn-bg-default)",
+    color: "var(--btn-text-default)",
     cursor: "pointer",
   };
 
@@ -89,7 +90,8 @@ export default function AddPage() {
         padding: 16,
         maxWidth: 480,
         margin: "0 auto",
-        background: "#f5f5f5",
+        background: "var(--main-bg)",
+        color: "var(--text-main)",
         minHeight: "100vh",
       }}
     >
@@ -114,7 +116,9 @@ export default function AddPage() {
           fontSize: 16,
           marginBottom: 16,
           cursor: "pointer",
-          border: "1px solid #ccc",
+          background: "var(--input-bg)",
+          color: "var(--text-main)",
+          border: "1px solid var(--border-color)",
           borderRadius: 8,
         }}
       />
@@ -130,7 +134,9 @@ export default function AddPage() {
           fontSize: 16,
           marginBottom: 16,
           cursor: "pointer",
-          border: "1px solid #ccc",
+          background: "var(--input-bg)",
+          color: "var(--text-main)",
+          border: "1px solid var(--border-color)",
           borderRadius: 8,
         }}
       />
@@ -144,7 +150,9 @@ export default function AddPage() {
           fontSize: 16,
           marginBottom: 16,
           cursor: "pointer",
-          border: "1px solid #ccc",
+          background: "var(--input-bg)",
+          color: "var(--text-main)",
+          border: "1px solid var(--border-color)",
           borderRadius: 8,
         }}
       >
@@ -162,9 +170,8 @@ export default function AddPage() {
           padding: 12,
           fontSize: 16,
           cursor: "pointer",
-
-          background: "#7eda81",
-          // color: "white",
+          background: "var(--btn-bg-primary)",
+          color: "var(--btn-text-default)",
           border: "none",
           borderRadius: 8,
         }}
@@ -184,7 +191,9 @@ export default function AddPage() {
             fontSize: 16,
             marginRight: 8,
             cursor: "pointer",
-            border: "1px solid #ccc",
+            background: "var(--input-bg)",
+            color: "var(--text-main)",
+            border: "1px solid var(--border-color)",
             borderRadius: 8, 
           }}
         />
@@ -193,8 +202,8 @@ export default function AddPage() {
           onClick={addCategory}
           style={{ 
             cursor: "pointer",
-            background: "#da7e7e",
-            // color: "white",
+            background: "var(--btn-bg-danger)",
+            color: "var(--btn-text-light)",
             border: "none",
             borderRadius: 8,
           }}
